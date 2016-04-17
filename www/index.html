@@ -13,7 +13,10 @@
         <script type="text/javascript" src="static/jquery.mobile-1.4.0.min.js"></script>
 		<script type="text/javascript" src="static/my.js"></script>	
 
-  
+  		<style>
+			*{ text-shadow:none;}
+        	li{word-wrap:break-word!important; white-space:normal!important;}
+        </style>
 		
 		<script>
 			
@@ -41,10 +44,10 @@
 	
 		<!----------=====================Log in==================------------>
 		<div data-role="page" id="pagelogin">
-            <div data-theme="c" data-role="header">
+            <div data-theme="c" data-role="header" style="height:45px;">
                 <a data-role="button" href="#" class="ui-btn-left" style="padding:5px 5px;" ><img src="ctb.png"></a>
                 <a data-role="button" href="#pagelogin" class="ui-btn-right" onClick="exit()" style="padding:8px 15px;"><img src="exit.png"></a>
-                <h3 >login</h3>
+                <h3 ></h3>
             </div>
 			
             <div data-role="content">
@@ -78,10 +81,10 @@
 		<!-- ===============Patient List to select================== -->
         <div data-role="page" id="page1" >
 		
-            <div data-theme="c" data-role="header">
+            <div data-theme="c" data-role="header" style="height:45px;">
                 <a data-role="button" href="#"   class="ui-btn-left" style="padding:5px 5px;" ><img src="ctb.png"></a>
                <a data-role="button" href="#pagelogin" class="ui-btn-right" onClick="exit()" style="padding:8px 15px;"><img src="exit.png"></a>
-                <h3 >Patient List</h3>
+                <h3 ></h3>
             </div>
 			
 			<div data-role="content">
@@ -287,7 +290,7 @@
 					<div id="childYes">
                     
                     	<ul data-role="listview" data-inset="true" id="checkboxes2">
-                            <li class="ui-field-contain" style="background-color:#F2F2F2; font-weight:bold;">
+                            <li class="ui-field-contain" style="background-color:#F2F2F2;">
                                রোগীর নিকটে যারা থাকেন তাদের মধ্যে কত জনের যক্ষা রোগের লক্ষণ সনাক্তকরণ করা হযেছে ?   
                             </li>
                             <li class="ui-field-contain">
