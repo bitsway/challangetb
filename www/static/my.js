@@ -91,7 +91,7 @@ function loginCheckNew() {
 					$('#sideeffectList').empty();
 					$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');
 					
-					
+										
 					var patientArray = patient.split(',');
 					var totalPatient=patientArray.length;
 					
@@ -156,8 +156,7 @@ function patientInfoNew(p) {
 		var symptCIFTemp='<div data-role="fieldcontain"><fieldset data-role="controlgroup" ><legend> রোগীর নিকটে যারা থাকেন তাদের মধ্যে কারো যক্ষা রোগের লক্ষণ আছে কি না?</legend><input id="radio1" name="yesnoChild" value="Yes" type="radio"><label for="radio1">YES</label><input id="radio2" name="yesnoChild" value="No" type="radio" checked="checked"><label for="radio2"> NO</label></fieldset></div>'
 		
 		
-		
-		
+			
 		
 		$.ajax({		  
 		  url: apipath+'patientInfoNew?cid=CPMDT&patient='+p,
@@ -189,7 +188,7 @@ function patientInfoNew(p) {
 						
 			// $("#tempsideeffect").html(loginResultArray[2])
 			$('#sideeffectList').empty();
-			$('#sideeffectList').append($("#tempsideeffect").val()).trigger('create');
+			$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');
 			
 			$('#SideeffectActionDiv').empty();
 			$('#SideeffectActionDiv').append(tempSideeffectAction).trigger('create');
@@ -253,6 +252,8 @@ function medicine() {
 				alert ('Sorry Network not available');
 			}
 			$("#smCount").val(sideeffectandmedicine)
+			url = "#Medication"; 
+			$.mobile.navigate(url);
 		  }
 		});
 }
@@ -521,6 +522,7 @@ function symptContactCheck() {
 
 
 function finalSubmitNew() {
+		
 		var now = new Date();
 		var month=now.getUTCMonth()+1;
 		
@@ -608,19 +610,22 @@ function finalSubmitNew() {
 		//Sile effect list
 		var checkSname='check_S';
 			var addS=0
+			
 			for (s=0; s<pSideeffectdataCount; s++){
 				addS=addS+1
 				var checkS='#'+checkSname+addS;
 				
 				var checksValue=$(checkS).is(':checked') ? 1 : 0;				
-								
+				
+				
 				if (checksValue>0){
 					
 					if (s==0){
-						pSideeffectdata=$("input[name='"+checkSname+addS+"']:checked").val().trim();					
+						pSideeffectdata=$("input[name='"+checkSname+addS+"']:checked").val();
+										
 					}
 					else{
-						pSideeffectdata=pSideeffectdata+'fdfd'+$("input[name='"+checkSname+addS+"']:checked").val().trim();					
+						pSideeffectdata=pSideeffectdata+'fdfd'+$("input[name='"+checkSname+addS+"']:checked").val();					
 					}
 				
 				}
@@ -642,10 +647,10 @@ function finalSubmitNew() {
 			
 			if (checkmValue>0){
 				if (m==0){
-					pMedicine=$("input[name='"+checkMname+addM+"']:checked").val().trim();
+					pMedicine=$("input[name='"+checkMname+addM+"']:checked").val();
 				}
 				else{
-					pMedicine=pMedicine+'fdfd'+$("input[name='"+checkMname+addM+"']:checked").val().trim();
+					pMedicine=pMedicine+'fdfd'+$("input[name='"+checkMname+addM+"']:checked").val();
 				}
 			
 			}
