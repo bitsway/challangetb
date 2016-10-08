@@ -24,7 +24,7 @@ function onSuccess(position) {
 // var apipath='http://localhost/cpmdt/www/';
 //var apipath='http://vyeon.com/cpmdt/syncmobile/';
 
-var apipath='http://c003.cloudapp.net/cpmdt/syncmobile_160412/';
+var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_160412/';
 //local
 //var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_160412/';
 
