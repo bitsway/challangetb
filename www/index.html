@@ -232,7 +232,7 @@
             	
                 <ul data-role="listview" data-inset="true" data-theme="c">
                     <li class="ui-field-contain" style="background-color:#F2F2F2;">
-                        চলতি মাসে কফ পরীক্ষা হইসে ?           
+                        চলতি মাসে কফ পরীক্ষা হয়েছে ?           
                     </li>
                     <li class="ui-field-contain">
                     	<select id="test_result_select" name="test_result_select" data-native-menu="false">
@@ -244,7 +244,7 @@
                 
                 <ul data-role="listview" data-inset="true" data-theme="c" id="achWardOld">
                     <li class="ui-field-contain" style="background-color:#F2F2F2;">
-                        চলতি মাসে কালচার পাঠানো হইসে?        
+                        চলতি মাসে কালচার পাঠানো হয়েছে ?        
                     </li>
                     <li class="ui-field-contain">
                     	<select id="culTestResult" name="culTestResult" data-native-menu="false">
@@ -272,22 +272,8 @@
 				</div>
 				<div data-role="content">
 					<div id="childErrMsg" style="color:#FF0000;"></div>
-					<div id="childDiv">							
-                        <ul data-role="listview" data-inset="true" id="checkboxes2">
-                            <li class="ui-field-contain" style="background-color:#F2F2F2;">
-                                রোগীর পরিবারে ৫ বছরের নিচে কোনো শিশু আছে?           
-                            </li>
-                            <li class="ui-field-contain">
-                                <fieldset data-role="controlgroup" data-type="horizental">
-                                    <input id="radio1" name="pchild"  value="1" type="radio">
-                                    <label for="radio1"> YES</label>
-                                    <input id="radio2" name="pchild" value="0" type="radio" checked="checked" >
-                                    <label for="radio2"> NO</label>
-                                </fieldset>                                    
-                            </li>
-                        </ul>
-					</div>
-					<div id="childYes">
+					
+					<div id="childDiv">
                     
                     	<ul data-role="listview" data-inset="true" id="checkboxes2">
                             <li class="ui-field-contain" style="background-color:#F2F2F2;">
@@ -306,17 +292,39 @@
                                     <option value="8">8</option>                                    
                                 </select>                                    
                             </li>
+                            
                             <li class="ui-field-contain" style="background-color:#F2F2F2;">
                                 তাদের পরীক্ষা করা হযেছে ?          
                             </li>
                             <li class="ui-field-contain">
                                 <fieldset data-role="controlgroup" data-type="vertical">
-                                    <input id="radio1" name="pchildTest"  value="1" type="radio">
+                                    <input id="radio3" name="pchildTest"  value="1" type="radio">
+                                    <label for="radio3"> YES</label>
+                                    <input id="radio4" name="pchildTest" value="0" type="radio" checked="checked" >
+                                    <label for="radio4"> NO</label>
+                                </fieldset>                                    
+                            </li>
+                            <li class="ui-field-contain" style="background-color:#F2F2F2;">
+                                রোগীর পরিবারে ৫ বছরের নিচে কোনো শিশু আছে?           
+                            </li>
+                            <li class="ui-field-contain">
+                                <fieldset data-role="controlgroup" data-type="horizental">
+                                    <input id="radio1" name="pchild"  value="1" type="radio">
                                     <label for="radio1"> YES</label>
-                                    <input id="radio2" name="pchildTest" value="0" type="radio" checked="checked" >
+                                    <input id="radio2" name="pchild" value="0" type="radio" checked="checked" >
                                     <label for="radio2"> NO</label>
                                 </fieldset>                                    
                             </li>
+                            
+                           </ul>
+                           </div>
+                           
+                           <div id="childYes">							
+                                <ul data-role="listview" data-inset="true" id="checkboxes2">
+                                    
+                                
+                           
+                           
                             
                             <li class="ui-field-contain" style="background-color:#F2F2F2;">
                                ৫ বছরের নিচে সংখ্যা উল্লেখ করুন         
@@ -431,11 +439,13 @@
 		    </div>
 	      <div data-role="content">
 		  		<b>Attention!</b>
-				<ul>
+                <div id="attention"></div>
+                
+				<!--<ul>
 		    		<li>Use N95 respirator while visiting patients </li>
 		    		<li>Insist the patient to wear musk</li>
 					<li>Dispose sharps properly into the bin you are given and empty the bin when full</li>
-		    	</ul>
+		    	</ul>-->
                 
                 <input name="lat" id="lat" placeholder="" value="" type="hidden">
 				<input name="long" id="long" placeholder="" value="" type="hidden">
@@ -466,10 +476,10 @@
 		    	 <br/><br/>
 		  
 		        <a data-role="button" data-theme="c" data-transition="slide" href="#pagelogin" onClick="exit()">
-		            প্রস্থান করা
+		            শেষ হলো
 		        </a>
 		      
-				<a data-role="button" data-theme="c" onClick="dotAnotherPt()"    data-transition="slide">আর একজন রোগীর  'DOT'</a>
+				<a data-role="button" data-theme="c" onClick="dotAnotherPt()"    data-transition="slide">আর একজন রোগীর  'DOT'  করবো</a>
 				<!--<input type="submit" id="loginCheckNew" name="loginCheck" value="Submit" >!-->
 				
 		    </div>		    

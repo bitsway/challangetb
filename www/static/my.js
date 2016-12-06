@@ -14,8 +14,8 @@ function onSuccess(position) {
 
 // onError Callback receives a PositionError object
     function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n');
+        $("#lat").val(0)
+		$("#long").val(0)
     }
 
 
@@ -24,9 +24,9 @@ function onSuccess(position) {
 // var apipath='http://localhost/cpmdt/www/';
 //var apipath='http://vyeon.com/cpmdt/syncmobile/';
 
-var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_160412/';
+var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_161206/';
 //local
-//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_160412/';
+//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_161206/';
 
 var loginResult='';
 var patient='';
@@ -69,7 +69,7 @@ function loginCheckNew() {
 	 var mobile=$("#mobile").val() ;
 	 var password=$("#password").val() ;
 	 
-	 //alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&mobile=8801234567890&password='+password);
+	 //alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password);
 	 $.ajax({		
 		 url: apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password,
 		  success: function(result) {
@@ -145,7 +145,7 @@ function patientInfoNew(p) {
 		
 		var page=1;
 		
-		var tempSideeffectAction='<div id="checkboxes2" data-role="fieldcontain"><fieldset data-role="controlgroup" data-type="vertical"><legend>রোগীর পার্শপ্রতিক্রিয়া সমাধানে কি ব্যবস্তা নিয়া হইসিলো?</legend><input id="checkConsultation" name="checkConsultation" type="checkbox"><label for="checkConsultation">আসস্থ করা হলো </label><input id="checkReferral" name="checkReferral" type="checkbox"><label for="checkReferral">চিকিস্যকের সাথে পরামর্শ </label><input id="checkSEA3" name="checkSEA3" type="checkbox"><label for="checkSEA3">ভর্তির জন্যে প্রেরণ </label><input id="checkSEA4" name="checkSEA4" type="checkbox"><label for="checkSEA4">চিকিস্যকের কাছে প্রেরণ </label></fieldset></div>';
+		var tempSideeffectAction='<div id="checkboxes2" data-role="fieldcontain"><fieldset data-role="controlgroup" data-type="vertical"><legend>রোগীর পার্শপ্রতিক্রিয়া সমাধানে কি ব্যবস্তা নিয়া হইসিলো?</legend><input id="checkConsultation" name="checkConsultation" type="checkbox"><label for="checkConsultation">আশ্বস্থ করা হলো </label><input id="checkReferral" name="checkReferral" type="checkbox"><label for="checkReferral">চিকিৎসকের সাথে পরামর্শ </label><input id="checkSEA4" name="checkSEA4" type="checkbox"><label for="checkSEA4">চিকিৎসকের কাছে প্রেরণ </label><input id="checkSEA3" name="checkSEA3" type="checkbox"><label for="checkSEA3">ভর্তির জন্য প্রেরণ </label></fieldset></div>';
 		
 		var tempSideeffectCheck='<div data-role="fieldcontain"><fieldset data-role="controlgroup" ><legend> Ask the patient, whether he/she is <b>experiencing any side effect</b>:</legend><input id="radio1" name="yesno" value="Yes" type="radio"><label for="radio1"> Yes </label><input id="radio2" name="yesno" value="No" type="radio" checked="checked"><label for="radio2"> No </label></fieldset></div>';
 		
@@ -269,6 +269,23 @@ function madicationNext(){
 			}
 	}
 
+function sideEffectUncheck(i) {
+	var chkName='check_S'+i.toString();
+	
+	var unCheck=$("input[name='"+chkName+"']:checked").val()?1:0;
+	
+	if(unCheck==1){
+		var checkValue=$("input[name='"+chkName+"']:checked").val();
+		
+		if(checkValue == 'NO SIDE EFFECT'){
+			
+			$("input[name='check_S14']:checked").attr('checked',false);
+		}		
+		
+	}
+	
+}
+
 
 function sideEffect() {
 		var sideeffectList;
@@ -306,6 +323,10 @@ function sideEffect() {
 		}
 
 }
+
+
+
+
 
 function seDataNext(){
 	if($("#sideeffectList").find("input[type=checkbox]:checked").length==0){
@@ -410,6 +431,26 @@ function checkChild() {
 			var iptTest=$("input[name='pchildRecIPT']:checked").val();
 			var noOfChild = $("#NofChild").val();
 			var iptTest=$("input[name='pchildRecIPT']:checked").val();
+			
+			
+			$.ajax({
+			  url:apipath+'attention?cid=CPMDT',
+			  
+			  success: function(result) {
+				  attentionList=result.split("<fd>");
+				  
+				  var attentionCmbo='<ul data-role="listview"  data-inset="true" >';
+				  
+				  for (i=0;i<attentionList.length;i++){	
+					  attentionCmbo+='<li>'+attentionList[i]+'</li>';
+				  }	
+				 
+				 attentionCmbo+='</ul>';
+				  
+				$('#attention').empty();
+				$('#attention').append(attentionCmbo).trigger('create');
+			  		}
+				})
 			
 			//alert(patientChild+','+noOfChild+','+iptTest);
 			/*if (patientChild.toString()=='1'){
