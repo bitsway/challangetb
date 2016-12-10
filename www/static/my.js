@@ -24,9 +24,9 @@ function onSuccess(position) {
 // var apipath='http://localhost/cpmdt/www/';
 //var apipath='http://vyeon.com/cpmdt/syncmobile/';
 
-var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_161206/';
+var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_161210/';
 //local
-//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_161206/';
+//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_161210/';
 
 var loginResult='';
 var patient='';
@@ -86,11 +86,17 @@ function loginCheckNew() {
 					//alert (loginResult);
 					patient=loginResultArray[1];
 					sideeffectList=loginResultArray[2];
+					attentionList=loginResultArray[3];
+					
+					localStorage.attentionList=attentionList
 					localStorage.sideeffectList=sideeffectList
 					$("#tempsideeffect").val(localStorage.sideeffectList)
 					$('#sideeffectList').empty();
-					$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');
+					$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');	
 					
+					$("#tempAttention").val(localStorage.attentionList)					
+					$('#attention').empty();
+					$('#attention').append(localStorage.attentionList).trigger('create');					
 										
 					var patientArray = patient.split(',');
 					var totalPatient=patientArray.length;
@@ -145,7 +151,7 @@ function patientInfoNew(p) {
 		
 		var page=1;
 		
-		var tempSideeffectAction='<div id="checkboxes2" data-role="fieldcontain"><fieldset data-role="controlgroup" data-type="vertical"><legend>রোগীর পার্শপ্রতিক্রিয়া সমাধানে কি ব্যবস্তা নিয়া হইসিলো?</legend><input id="checkConsultation" name="checkConsultation" type="checkbox"><label for="checkConsultation">আশ্বস্থ করা হলো </label><input id="checkReferral" name="checkReferral" type="checkbox"><label for="checkReferral">চিকিৎসকের সাথে পরামর্শ </label><input id="checkSEA4" name="checkSEA4" type="checkbox"><label for="checkSEA4">চিকিৎসকের কাছে প্রেরণ </label><input id="checkSEA3" name="checkSEA3" type="checkbox"><label for="checkSEA3">ভর্তির জন্য প্রেরণ </label></fieldset></div>';
+		var tempSideeffectAction='<div id="checkboxes2" data-role="fieldcontain"><fieldset data-role="controlgroup" data-type="vertical"><legend>রোগীর পার্শপ্রতিক্রিয়া সমাধানে কি ব্যবস্তা নিয়া হইছিল?</legend><input id="checkConsultation" name="checkConsultation" type="checkbox"><label for="checkConsultation">আশ্বস্থ করা হলো </label><input id="checkReferral" name="checkReferral" type="checkbox"><label for="checkReferral">চিকিৎসকের সাথে পরামর্শ </label><input id="checkSEA4" name="checkSEA4" type="checkbox"><label for="checkSEA4">চিকিৎসকের কাছে প্রেরণ </label><input id="checkSEA3" name="checkSEA3" type="checkbox"><label for="checkSEA3">ভর্তির জন্য প্রেরণ </label></fieldset></div>';
 		
 		var tempSideeffectCheck='<div data-role="fieldcontain"><fieldset data-role="controlgroup" ><legend> Ask the patient, whether he/she is <b>experiencing any side effect</b>:</legend><input id="radio1" name="yesno" value="Yes" type="radio"><label for="radio1"> Yes </label><input id="radio2" name="yesno" value="No" type="radio" checked="checked"><label for="radio2"> No </label></fieldset></div>';
 		
@@ -198,6 +204,10 @@ function patientInfoNew(p) {
 			
 			$('#paymentCheck').empty();
 			$('#paymentCheck').append(tempPaymentCheck).trigger('create');
+			
+			
+			$('#attention').empty();
+			$('#attention').append(localStorage.attentionList).trigger('create');				
 			
 			// $('#childDiv').empty();
 			// $('#childDiv').append(childDivTemp).trigger('create');
@@ -270,9 +280,9 @@ function madicationNext(){
 	}
 
 function sideEffectUncheck(i) {
-	var chkName='check_S'+i.toString();
-	
-	var unCheck=$("input[name='"+chkName+"']:checked").val()?1:0;
+	localStorage.chkName='check_S'+i.toString();
+	//alert(localStorage.chkName);
+	/*var unCheck=$("input[name='"+chkName+"']:checked").val()?1:0;
 	
 	if(unCheck==1){
 		var checkValue=$("input[name='"+chkName+"']:checked").val();
@@ -282,7 +292,7 @@ function sideEffectUncheck(i) {
 			$("input[name='check_S14']:checked").attr('checked',false);
 		}		
 		
-	}
+	}*/
 	
 }
 
@@ -331,11 +341,13 @@ function sideEffect() {
 function seDataNext(){
 	if($("#sideeffectList").find("input[type=checkbox]:checked").length==0){
 		$("#seError").text("Please Select One");
-		}else{
-									
-			url = "#sideeffect_action";      
-			$.mobile.navigate(url);		
-			}
+	}else if(localStorage.chkName=='check_S15'){
+		url = "#patient_test_data";      
+		$.mobile.navigate(url);		
+	}else{								
+		url = "#sideeffect_action";      
+		$.mobile.navigate(url);		
+		}
 	
 	}
 
@@ -406,20 +418,15 @@ function paymentNext() {
 
 //====== Symp Y/N Next -function
 function symptCInFamilyNext() {			
-			/*var yesnoChild = $("input[name='yesnoChild']:checked").val();			
-			
+			var yesnoChild = $("input[name='yesnoChild']:checked").val();			
 			if (yesnoChild=='Yes'){
-				url = "#sympt_contact";
-			}else{
-				
-				if (chieldFlag==0){
-					url = "#patientChild";
-				}else{
-					url = "#final_submit";
-				}
-			}*/
-		var url = "#patientChild";			
-		$.mobile.navigate(url);
+				url = "#patientChild";
+				$.mobile.navigate(url);
+			}else{				
+				url = "#final_submit";			
+				$.mobile.navigate(url);
+			}
+		
 }
 
 function checkChild() {
@@ -433,7 +440,7 @@ function checkChild() {
 			var iptTest=$("input[name='pchildRecIPT']:checked").val();
 			
 			
-			$.ajax({
+			/*$.ajax({
 			  url:apipath+'attention?cid=CPMDT',
 			  
 			  success: function(result) {
@@ -450,7 +457,7 @@ function checkChild() {
 				$('#attention').empty();
 				$('#attention').append(attentionCmbo).trigger('create');
 			  		}
-				})
+				})*/
 			
 			//alert(patientChild+','+noOfChild+','+iptTest);
 			/*if (patientChild.toString()=='1'){
