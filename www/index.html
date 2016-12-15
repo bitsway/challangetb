@@ -37,14 +37,13 @@
 							
 		</script>
 		
-		<script src = "js/fastclick.min.js"></script>
+		<script src = "fastclick.min.js"></script>
  
 		<script type="text/javascript">
-		document.addEventListener("deviceready", onDeviceReady, false);		 
-		function onDeviceReady() {		
+		$(function() {
 			var attachFastClick = Origami.fastclick;
 			attachFastClick(document.body);
-		}
+		});
 		</script>
 		
     </head>
