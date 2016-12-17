@@ -24,9 +24,9 @@ function onSuccess(position) {
 // var apipath='http://localhost/cpmdt/www/';
 //var apipath='http://vyeon.com/cpmdt/syncmobile/';
 
-var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_161210/';
+var apipath='http://app.businesssolutionapps.com/cpmdt/syncmobile_161217/';
 //local
-//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_161210/';
+//var apipath='http://127.0.0.1:8000/cpmdt/syncmobile_161217/';
 
 var loginResult='';
 var patient='';
@@ -69,7 +69,7 @@ function loginCheckNew() {
 	 var mobile=$("#mobile").val() ;
 	 var password=$("#password").val() ;
 	 
-	 //alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password);
+	// alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password);
 	 $.ajax({		
 		 url: apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password,
 		  success: function(result) {
@@ -279,19 +279,21 @@ function madicationNext(){
 			}
 	}
 
-function sideEffectUncheck(i) {
+function sideEffectUncheck(i) {	
 	localStorage.chkName='check_S'+i.toString();
 	//alert(localStorage.chkName);
-	/*var unCheck=$("input[name='"+chkName+"']:checked").val()?1:0;
-	
-	if(unCheck==1){
-		var checkValue=$("input[name='"+chkName+"']:checked").val();
-		
+	/*var unCheck=$("input[name='"+localStorage.chkName+"']:checked").val()?1:0;		
+	if(unCheck==1){		
+		var checkValue=$("input[name='"+localStorage.chkName+"']:checked").val();		
+		//alert(checkValue);
 		if(checkValue == 'NO SIDE EFFECT'){
+			//$('#sideeffectList').empty()
+			//$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');	
 			
-			$("input[name='check_S14']:checked").attr('checked',false);
+			$("input[id='"+localStorage.chkName+"']:checked").attr('checked',true);
+			
 		}		
-		
+		 
 	}*/
 	
 }
