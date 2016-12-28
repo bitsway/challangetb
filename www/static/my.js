@@ -84,6 +84,7 @@ function loginCheckNew() {
 				
 				if (loginResultArray[0]=='YES'){
 					//alert (loginResult);
+										
 					patient=loginResultArray[1];
 					sideeffectList=loginResultArray[2];
 					attentionList=loginResultArray[3];
@@ -282,7 +283,7 @@ function madicationNext(){
 function sideEffectUncheck(i) {	
 	localStorage.chkName='check_S'+i.toString();
 	//alert(localStorage.chkName);
-	/*var unCheck=$("input[name='"+localStorage.chkName+"']:checked").val()?1:0;		
+	var unCheck=$("input[name='"+localStorage.chkName+"']:checked").val()?1:0;		
 	if(unCheck==1){		
 		var checkValue=$("input[name='"+localStorage.chkName+"']:checked").val();		
 		//alert(checkValue);
@@ -290,11 +291,11 @@ function sideEffectUncheck(i) {
 			//$('#sideeffectList').empty()
 			//$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');	
 			
-			$("input[id='"+localStorage.chkName+"']:checked").attr('checked',true);
+			$("input[name='"+localStorage.chkName+"']:checked").attr('checked',false);
 			
 		}		
 		 
-	}*/
+	}
 	
 }
 
@@ -709,7 +710,7 @@ function finalSubmitNew() {
 		//alert(apipath+'submitDataNew?cid=CPMDT&pid='+pID+'&dpid='+mobile+'&pConsultation='+pConsultation+'&pSref='+pSref+'&sea3='+pSEA3+'&sea4='+pSEA4+'&pLatitude='+lat+'&pLongitude='+long+'&pMedicine='+encodeURIComponent(pMedicine)+'&pAncimedicine='+encodeURI(pAncimedicine)+'&pSideeffectdata='+encodeURIComponent(pSideeffectdata)+'&startDt='+startDt+'&endDt='+endDt+'&payment='+pPayment+'&followUp='+encodeURIComponent(followUp)+'&reportTestlist='+encodeURIComponent(reportTestlist)+'&rowid='+rowid+'&symptName='+encodeURI(symptName)+'&symptRelation='+symptRelation+'&symptStatus='+symptStatus+'&rowid1='+rowid1+'&symptName1='+encodeURIComponent(symptName1)+'&symptRelation1='+symptRelation1+'&symptStatus1='+symptStatus1+'&yesnoChild='+yesnoChild+'&NofChild='+NofChild+'&no_of_peple='+noOfPNearPatient+'&p_child_test='+pchildTest+'&pchildRecIPT='+pchildRecIPT+'&culturalTestlist='+culturalTestlist+'&patientChild='+patientChild)
 		
 		$.ajax({	
-				  url: apipath+'submitDataNew?cid=CPMDT&pid='+pID+'&dpid='+mobile+'&pConsultation='+pConsultation+'&pSref='+pSref+'&sea3='+pSEA3+'&sea4='+pSEA4+'&pLatitude='+lat+'&pLongitude='+long+'&pMedicine='+encodeURIComponent(pMedicine)+'&pAncimedicine='+encodeURI(pAncimedicine)+'&pSideeffectdata='+encodeURIComponent(pSideeffectdata)+'&startDt='+startDt+'&endDt='+endDt+'&payment='+pPayment+'&followUp='+encodeURIComponent(followUp)+'&reportTestlist='+encodeURIComponent(reportTestlist)+'&rowid='+rowid+'&symptName='+encodeURI(symptName)+'&symptRelation='+symptRelation+'&symptStatus='+symptStatus+'&rowid1='+rowid1+'&symptName1='+encodeURIComponent(symptName1)+'&symptRelation1='+symptRelation1+'&symptStatus1='+symptStatus1+'&yesnoChild='+yesnoChild+'&NofChild='+NofChild+'&no_of_peple='+noOfPNearPatient+'&p_child_test='+pchildTest+'&pchildRecIPT='+pchildRecIPT+'&culturalTestlist='+culturalTestlist+'&patientChild='+patientChild,
+				  url: apipath+'submitDataNew?cid=CPMDT&pid='+pID+'&dpid='+localStorage.dpid+'&pConsultation='+pConsultation+'&pSref='+pSref+'&sea3='+pSEA3+'&sea4='+pSEA4+'&pLatitude='+lat+'&pLongitude='+long+'&pMedicine='+encodeURIComponent(pMedicine)+'&pAncimedicine='+encodeURI(pAncimedicine)+'&pSideeffectdata='+encodeURIComponent(pSideeffectdata)+'&startDt='+startDt+'&endDt='+endDt+'&payment='+pPayment+'&followUp='+encodeURIComponent(followUp)+'&reportTestlist='+encodeURIComponent(reportTestlist)+'&rowid='+rowid+'&symptName='+encodeURI(symptName)+'&symptRelation='+symptRelation+'&symptStatus='+symptStatus+'&rowid1='+rowid1+'&symptName1='+encodeURIComponent(symptName1)+'&symptRelation1='+symptRelation1+'&symptStatus1='+symptStatus1+'&yesnoChild='+yesnoChild+'&NofChild='+NofChild+'&no_of_peple='+noOfPNearPatient+'&p_child_test='+pchildTest+'&pchildRecIPT='+pchildRecIPT+'&culturalTestlist='+culturalTestlist+'&patientChild='+patientChild,
 				  success: function(result) {
 					
 					$("#pID").val("");
