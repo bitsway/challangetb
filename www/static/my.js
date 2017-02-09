@@ -291,7 +291,7 @@ function sideEffectUncheck(i) {
 			//$('#sideeffectList').empty()
 			//$('#sideeffectList').append(localStorage.sideeffectList).trigger('create');	
 			
-			$("input[name='"+localStorage.chkName+"']:checked").attr('checked',false);
+			$("input[name='"+localStorage.chkName+"']:checked").attr('checked',true);
 			
 		}		
 		 
