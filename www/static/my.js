@@ -794,7 +794,11 @@ function refreshPage(){
 
 
 function exit() {
-navigator.app.exitApp();
+	localStorage.dpid=="";
+		
+	url = "#pagelogin"; 
+	$(location).attr('href',url);
+//navigator.app.exitApp();
 }
 
 
