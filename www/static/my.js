@@ -42,6 +42,10 @@ var errror_str='Network Not Available. Please Check that you have Internet activ
 
 $(function() {
 	
+	localStorage.dpid="";
+	$("#mobile").val("");
+	$("#password").val("");
+	
 	if (localStorage.dpid=="" || localStorage.dpid==undefined){
 		$.mobile.navigate('#pagelogin');
 	}else{
@@ -69,7 +73,7 @@ function loginCheckNew() {
 	 var mobile=$("#mobile").val() ;
 	 var password=$("#password").val() ;
 	 
-	// alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password);
+	 //alert(apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password);
 	 $.ajax({		
 		 url: apipath+'passwordCheckNew?cid=CPMDT&dpid='+mobile+'&password='+password,
 		  success: function(result) {
@@ -794,7 +798,9 @@ function refreshPage(){
 
 
 function exit() {
-	localStorage.dpid=="";
+	localStorage.dpid="";
+	$("#mobile").val("");
+	$("#password").val("");
 		
 	url = "#pagelogin"; 
 	$(location).attr('href',url);
