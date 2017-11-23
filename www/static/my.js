@@ -804,7 +804,7 @@ function exit() {
 		
 	url = "#pagelogin"; 
 	$(location).attr('href',url);
-//navigator.app.exitApp();
+    navigator.app.exitApp();
 }
 
 
